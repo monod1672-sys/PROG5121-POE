@@ -7,10 +7,12 @@ class Login {
     private String storedPassword;
     private String storedPhone;
 
+    // Username validation
     public boolean checkUserName(String username) {
         return username.contains("_") && username.length() <= 5;
     }
 
+    // Password validation
     public boolean checkPassword(String password) {
 
         if (password.length() < 8) return false;
@@ -34,6 +36,7 @@ class Login {
         return hasUpper && hasNumber && hasSpecial;
     }
 
+    // Phone validation
     public boolean checkPhone(String phone) {
 
         if (!phone.startsWith("+27")) return false;
@@ -48,7 +51,7 @@ class Login {
         return true;
     }
 
-    // Register method
+    // Register
     public void register(Scanner sc) {
 
         System.out.println("=== REGISTER ===");
@@ -61,7 +64,7 @@ class Login {
             storedUsername = username;
         } else {
             System.out.println("Username is not correctly formatted.");
-            return; // stop if invalid
+            return;
         }
 
         System.out.print("Enter password: ");
@@ -75,7 +78,7 @@ class Login {
             return;
         }
 
-        System.out.print("Enter cell phone (+27...): ");
+        System.out.print("Enter phone (+27...): ");
         String phone = sc.nextLine();
 
         if (checkPhone(phone)) {
@@ -89,7 +92,7 @@ class Login {
         System.out.println("Registration successful!\n");
     }
 
-    // Login method
+    // Login
     public void login(Scanner sc) {
 
         System.out.println("=== LOGIN ===");
@@ -103,12 +106,39 @@ class Login {
         if (username.equals(storedUsername) && password.equals(storedPassword)) {
             System.out.println("Welcome back! Login successful.");
         } else {
-            System.out.println("Username or password incorrect, please try again.");
+            System.out.println("Username or password incorrect.");
         }
     }
 }
 
 public class Main {
+
+
+    public static void runTests() {
+
+        Login login = new Login();
+
+        System.out.println("\n=== RUNNING TESTS ===");
+
+        System.out.println("Test Username Valid: " +
+                (login.checkUserName("ky1_") == true));
+
+        System.out.println("Test Username Invalid: " +
+                (login.checkUserName("kyle!!!!!") == false));
+
+        System.out.println("Test Password Valid: " +
+                (login.checkPassword("Ch@8sec@ke99!") == true));
+
+        System.out.println("Test Password Invalid: " +
+                (login.checkPassword("password") == false));
+
+        System.out.println("Test Phone Valid: " +
+                (login.checkPhone("+27838968976") == true));
+
+        System.out.println("Test Phone Invalid: " +
+                (login.checkPhone("0838968976") == false));
+    }
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -120,11 +150,12 @@ public class Main {
             System.out.println("\n=== MENU ===");
             System.out.println("1. Register");
             System.out.println("2. Login");
-            System.out.println("3. Exit");
+            System.out.println("3. Run Tests");
+            System.out.println("4. Exit");
             System.out.print("Choose option: ");
 
             choice = sc.nextInt();
-            sc.nextLine(); // FIX for Scanner (important!)
+            sc.nextLine();
 
             switch (choice) {
                 case 1:
@@ -136,6 +167,10 @@ public class Main {
                     break;
 
                 case 3:
+                    runTests();
+                    break;
+
+                case 4:
                     System.out.println("Goodbye!");
                     break;
 
@@ -143,7 +178,7 @@ public class Main {
                     System.out.println("Invalid choice.");
             }
 
-        } while (choice != 3);
+        } while (choice != 4);
 
         sc.close();
     }

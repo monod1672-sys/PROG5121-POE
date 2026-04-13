@@ -111,10 +111,10 @@ class Login {
     }
 }
 
-public class Main {
+public class Poeproject {
 
-
-    public static void runTests() {
+    
+        public static void runTests() {
 
         Login login = new Login();
 
@@ -183,3 +183,5 @@ public class Main {
         sc.close();
     }
 }
+    
+

@@ -1,4 +1,3 @@
-# PROG5121-POE
 import java.util.Scanner;
 
 class Login {
@@ -15,7 +14,8 @@ class Login {
     // Password validation
     public boolean checkPassword(String password) {
 
-        if (password.length() < 8) return false;
+        if (password.length() < 8)
+            return false;
 
         boolean hasUpper = false;
         boolean hasNumber = false;
@@ -39,8 +39,10 @@ class Login {
     // Phone validation
     public boolean checkPhone(String phone) {
 
-        if (!phone.startsWith("+27")) return false;
-        if (phone.length() != 12) return false;
+        if (!phone.startsWith("+27"))
+            return false;
+        if (phone.length() != 12)
+            return false;
 
         for (int i = 3; i < phone.length(); i++) {
             if (!Character.isDigit(phone.charAt(i))) {
@@ -113,7 +115,7 @@ class Login {
 
 public class Poeproject {
 
-        public static void runTests() {
+    public static void runTests() {
 
         Login login = new Login();
 
@@ -182,5 +184,3 @@ public class Poeproject {
         sc.close();
     }
 }
-    
-
